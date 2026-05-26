@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DATAGPT AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="mark">D</div>
+        <div>
+          <h1>DATAGPT AI</h1>
+          <p>PDF Chatbot</p>
+        </div>
+      </div>
+
+      <form id="uploadForm" class="upload-zone">
+        <input id="pdfInput" name="pdf" type="file" accept="application/pdf" hidden>
+        <button class="upload-button" type="button" id="uploadButton" aria-label="Upload PDF">
+          <i data-lucide="upload-cloud"></i>
+          <span>Upload PDF</span>
+        </button>
+        <p id="fileName">Drop a document here</p>
+        <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+      </form>
+
+      <section class="history">
+        <div class="panel-heading">
+          <span>Chats</span>
+          <button id="newChat" type="button" title="New chat" aria-label="New chat"><i data-lucide="plus"></i></button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+
+      <button id="themeToggle" class="theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">
+        <i data-lucide="moon"></i>
+      </button>
+    </aside>
+
+    <section class="chat">
+      <header class="chat-header">
+        <div>
+          <strong id="documentTitle">No PDF uploaded</strong>
+          <span id="documentMeta">Upload a document to begin</span>
+        </div>
+        <div id="statusPill" class="status">Idle</div>
+      </header>
+
+      <div id="messages" class="messages" aria-live="polite">
+        <article class="message ai">
+          <div class="bubble">
+            <p>Upload a PDF, then ask questions grounded only in that document.</p>
+            <time></time>
+          </div>
+        </article>
+      </div>
+
+      <form id="chatForm" class="composer">
+        <textarea id="messageInput" rows="1" placeholder="Ask about the uploaded PDF..." disabled></textarea>
+        <button id="sendButton" type="submit" disabled aria-label="Send message"><i data-lucide="send"></i></button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
